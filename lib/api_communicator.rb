@@ -9,7 +9,6 @@ def get_character_movies_from_api(character)
   character_films=[]
 
   character_hash["results"].each do |person|
-    # binding.pry
     if person["name"].downcase==character
       character_films=person["films"]
     end
@@ -22,6 +21,7 @@ def get_character_movies_from_api(character)
 end
 
 def parse_character_movies(films_hash)
+  films_hash.sort! {|movie1,movie2| movie1["episode_id"]<=>movie2["episode_id"]}
   films_hash.each do |film|
     puts film["title"]
   end
